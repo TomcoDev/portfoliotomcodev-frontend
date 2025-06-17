@@ -76,7 +76,7 @@ const Portfolio = () => {
       message: (form.elements.namedItem('message') as HTMLTextAreaElement).value,
     };
 
-    const res = await fetch('http://localhost:3001/api/contact', {
+    const res = await fetch('https://portfolio-backend-eahq.onrender.com/api/contact', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data),
@@ -97,7 +97,7 @@ const Portfolio = () => {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="font-bold text-xl bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
-              Portfolio
+              Portfolio TomcoDev
             </div>
             
             {/* Desktop Navigation */}
@@ -554,7 +554,7 @@ const Portfolio = () => {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <p className={`${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-              © 2025 Portfolio. Built with React and passion for clean code.
+              © 2025 TomcoDev. Built with React and passion for clean code.
             </p>
           </div>
         </div>
