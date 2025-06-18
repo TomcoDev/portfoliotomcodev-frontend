@@ -1,6 +1,17 @@
-import { useState, useEffect } from 'react';
-import { Github, Linkedin, Mail, ExternalLink, Code, Database, Server, Presentation, Target, Brain, ChevronDown, Menu, X } from 'lucide-react';
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { Github, Linkedin, Mail, Download, ExternalLink, Code, Database, Server, Presentation, Target, Brain, ChevronDown, Menu, X } from 'lucide-react';
+
+function forceAutofillRepaint() {
+  document.querySelectorAll('input, textarea').forEach(el => {
+    if (el instanceof HTMLInputElement || el instanceof HTMLTextAreaElement) {
+      if (el.value) {
+        const value = el.value;
+        el.value = '';
+        el.value = value;
+      }
+    }
+  });
+}
 
 const Portfolio = () => {
   const [darkMode, setDarkMode] = useState(true);
@@ -90,6 +101,29 @@ const Portfolio = () => {
     }
   };
 
+  // Sincroniza la clase dark en el body
+  useEffect(() => {
+    if (darkMode) {
+      document.body.classList.add('dark');
+    } else {
+      document.body.classList.remove('dark');
+    }
+  }, [darkMode]);
+
+  // Cambia el modo y fuerza repintado del autofill
+  const handleToggleDarkMode = () => {
+    setDarkMode((prev) => {
+      const newMode = !prev;
+      if (newMode) {
+        document.body.classList.add('dark');
+      } else {
+        document.body.classList.remove('dark');
+      }
+      setTimeout(forceAutofillRepaint, 0);
+      return newMode;
+    });
+  };
+
   return (
     <div className={`min-h-screen transition-all duration-300 ${darkMode ? 'bg-gray-900 text-white' : 'bg-gray-50 text-gray-900'}`}>
       {/* Navigation */}
@@ -120,7 +154,7 @@ const Portfolio = () => {
             {/* Theme Toggle & Mobile Menu */}
             <div className="flex items-center space-x-4">
               <button
-                onClick={() => setDarkMode(!darkMode)}
+                onClick={handleToggleDarkMode}
                 className={`p-2 rounded-lg transition-colors ${darkMode ? 'bg-gray-800 hover:bg-gray-700' : 'bg-gray-200 hover:bg-gray-300'}`}
               >
                 {darkMode ? '🌙' : '☀️'}
@@ -222,6 +256,14 @@ const Portfolio = () => {
                 aria-label="Mail"
               >
                 <Mail size={24} />
+              </a>
+              <a
+                href="/public/nestor_martinez_cv_en.pdf"
+                download
+                className={`p-3 rounded-full transition-colors ${darkMode ? 'bg-gray-800 hover:bg-gray-700' : 'bg-white hover:bg-gray-100'} shadow-lg`}
+                aria-label="Download CV"
+              >
+                <Download size={24} />
               </a>
             </div>
           </div>
