@@ -19,43 +19,41 @@ const Portfolio = () => {
   const [activeSection, setActiveSection] = useState('home');
 
   const technologies = {
-    frontend: ['React', 'HTML5', 'CSS3', 'JavaScript'],
-    backend: ['Node.js', 'PostgreSQL', 'REST APIs (Learning)'],
-    tools: ['GitHub', 'Git', 'Netlify', 'VS Code'],
-    analysis: ['Excel', 'Tableau', 'SQL', 'Data Analytics']
+    frontend: ['React', 'Vite', 'Zustand', 'TanStack Query'],
+    backend: ['NestJS', 'PostgreSQL', 'REST APIs'],
+    devops: ['GitHub', 'Git CLI', 'Vercel', 'Environment Setup'],
+    database: ['ER Modeling', 'Triggers', 'Normalized Structures']
   };
 
   const projects = [
     {
       id: 1,
-      title: "Business Management System - Learning Project",
-      description: "Developing a web application for small business management as a personal learning project. Building practical experience with modern web technologies and full-stack development fundamentals.",
-      technologies: ["React", "Node.js", "PostgreSQL", "CSS3"],
+      title: "SaaS Business Management Platform",
+      description: "Leading the development of a modern, scalable SaaS system designed to solve real business management challenges. Built with a full-stack approach using cutting-edge technologies.",
+      technologies: ["React", "NestJS", "PostgreSQL", "Zustand", "TanStack Query"],
       status: "In Development",
       type: "featured",
-      highlights: ["Basic CRUD operations", "User interface design", "Database integration", "Learning-focused approach"]
+      highlights: ["Real-time data synchronization", "Scalable architecture", "Modern UI/UX", "RESTful APIs"]
     },
     {
       id: 2,
-      title: "Professional Service Portfolio Website",
-      description: "Created a responsive website for aesthetic services with appointment booking functionality and social media integration. Focus on clean design and user experience.",
-      technologies: ["React", "Tailwind CSS", "JavaScript"],
+      title: "Reinforcement Learning in Logistics",
+      description: "Academic research and presentation on applying RL algorithms to optimize logistics operations and supply chain management.",
+      technologies: ["Python", "Machine Learning", "Data Analysis"],
       status: "Completed",
-      type: "web",
-      link: "https://twilight-portfoli0.netlify.app/"
+      type: "academic"
     },
     {
       id: 3,
-      title: "Interactive Wellness Application",
-      description: "Developed a web application focused on personal wellness with AI integration for personalized recommendations and user-friendly interface design.",
-      technologies: ["React", "JavaScript", "API Integration"],
-      status: "Completed", 
-      type: "web",
-      link: "https://bodyshin3.netlify.app/"
+      title: "AI & Automation Systems",
+      description: "Series of academic presentations covering artificial intelligence applications, automation strategies, and data-driven decision making.",
+      technologies: ["AI/ML", "Data Analysis", "Automation"],
+      status: "Ongoing",
+      type: "academic"
     }
   ];
 
-  const scrollToSection = (sectionId) => {
+  const scrollToSection = (sectionId: string) => {
     document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
     setActiveSection(sectionId);
     setMobileMenuOpen(false);
@@ -63,7 +61,7 @@ const Portfolio = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['home', 'experience', 'projects', 'skills', 'about', 'contact'];
+      const sections = ['home', 'projects', 'skills', 'about', 'contact'];
       const currentSection = sections.find(section => {
         const element = document.getElementById(section);
         if (element) {
@@ -79,34 +77,31 @@ const Portfolio = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
 
     const data = {
-      name: form.elements.namedItem('name').value,
-      email: form.elements.namedItem('email').value,
-      message: form.elements.namedItem('message').value,
+      name: (form.elements.namedItem('name') as HTMLInputElement).value,
+      email: (form.elements.namedItem('email') as HTMLInputElement).value,
+      message: (form.elements.namedItem('message') as HTMLTextAreaElement).value,
     };
 
-    try {
-      const res = await fetch('https://portfolio-backend-eahq.onrender.com/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
-      });
+    const res = await fetch('https://portfolio-backend-eahq.onrender.com/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    });
 
-      if (res.ok) {
-        alert('Mensaje enviado correctamente');
-        form.reset();
-      } else {
-        alert('Error al enviar el mensaje');
-      }
-    } catch (error) {
+    if (res.ok) {
+      alert('Mensaje enviado correctamente');
+      form.reset();
+    } else {
       alert('Error al enviar el mensaje');
     }
   };
 
+  // Sincroniza la clase dark en el body
   useEffect(() => {
     if (darkMode) {
       document.body.classList.add('dark');
@@ -115,6 +110,7 @@ const Portfolio = () => {
     }
   }, [darkMode]);
 
+  // Cambia el modo y fuerza repintado del autofill
   const handleToggleDarkMode = () => {
     setDarkMode((prev) => {
       const newMode = !prev;
@@ -135,12 +131,12 @@ const Portfolio = () => {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="font-bold text-xl bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
-              Néstor Martínez
+              Portfolio TomcoDev
             </div>
             
             {/* Desktop Navigation */}
             <div className="hidden md:flex space-x-8">
-              {['home', 'experience', 'projects', 'skills', 'about', 'contact'].map((item) => (
+              {['home', 'projects', 'skills', 'about', 'contact'].map((item) => (
                 <button
                   key={item}
                   onClick={() => scrollToSection(item)}
@@ -178,7 +174,7 @@ const Portfolio = () => {
         {mobileMenuOpen && (
           <div className={`md:hidden ${darkMode ? 'bg-gray-900' : 'bg-white'} border-t ${darkMode ? 'border-gray-800' : 'border-gray-200'}`}>
             <div className="px-4 py-2 space-y-2">
-              {['home', 'experience', 'projects', 'skills', 'about', 'contact'].map((item) => (
+              {['home', 'projects', 'skills', 'about', 'contact'].map((item) => (
                 <button
                   key={item}
                   onClick={() => scrollToSection(item)}
@@ -203,16 +199,16 @@ const Portfolio = () => {
             <div className="mb-8">
               <h1 className="text-5xl md:text-7xl font-bold mb-6">
                 <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">
-                  Systems Analyst
+                  SaaS Developer
                 </span>
                 <br />
                 <span className={darkMode ? 'text-white' : 'text-gray-900'}>
-                  & Developer in Training
+                  & Systems Analyst
                 </span>
               </h1>
               <p className={`text-xl md:text-2xl mb-8 max-w-3xl mx-auto ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-                Professional with 5+ years of experience in technology and customer service, currently developing web development skills and pursuing Systems Analysis degree. 
-                Combining practical business experience with technical learning.
+                Leading the development of modern, scalable SaaS solutions with cutting-edge technologies. 
+                Combining analytical thinking, product vision, and technical expertise to craft high-impact applications.
               </p>
             </div>
 
@@ -221,7 +217,7 @@ const Portfolio = () => {
                 onClick={() => scrollToSection('projects')}
                 className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-8 py-3 rounded-lg font-semibold hover:from-blue-600 hover:to-purple-700 transition-all duration-200 transform hover:scale-105"
               >
-                View My Projects
+                View My Work
               </button>
               <button
                 onClick={() => scrollToSection('contact')}
@@ -237,7 +233,7 @@ const Portfolio = () => {
 
             <div className="flex justify-center space-x-6">
               <a
-                href="https://github.com/Tomate-ai"
+                href="https://github.com/TomcoDev"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`p-3 rounded-full transition-colors ${darkMode ? 'bg-gray-800 hover:bg-gray-700' : 'bg-white hover:bg-gray-100'} shadow-lg`}
@@ -278,88 +274,13 @@ const Portfolio = () => {
         </div>
       </section>
 
-      {/* Experience Section */}
-      <section id="experience" className={`py-20 ${darkMode ? 'bg-gray-800/50' : 'bg-gray-100'}`}>
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">Professional Experience</h2>
-            <p className={`text-xl ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-              5+ years of experience in technology, customer service, and business operations
-            </p>
-          </div>
-
-          <div className="space-y-8">
-            <div className={`p-6 rounded-xl ${darkMode ? 'bg-gray-900' : 'bg-white'} shadow-lg`}>
-              <div className="flex justify-between items-start mb-4">
-                <div>
-                  <h3 className="text-xl font-bold">Technical Sales Advisor</h3>
-                  <p className="text-blue-400">Tecnomóvil</p>
-                  <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Dec 2023 - Jun 2025</p>
-                </div>
-              </div>
-              <p className={`${darkMode ? 'text-gray-300' : 'text-gray-600'} mb-3`}>
-                Specialized in technical consulting for electronic products, inventory management systems, and customer support. 
-                Gained valuable experience with business software and technical problem-solving.
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {['Technical Support', 'Inventory Systems', 'Customer Service', 'Product Training'].map((skill) => (
-                  <span key={skill} className={`px-3 py-1 rounded-full text-sm ${darkMode ? 'bg-gray-800 text-gray-300' : 'bg-gray-200 text-gray-700'}`}>
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            <div className={`p-6 rounded-xl ${darkMode ? 'bg-gray-900' : 'bg-white'} shadow-lg`}>
-              <div className="flex justify-between items-start mb-4">
-                <div>
-                  <h3 className="text-xl font-bold">Logistics Assistant</h3>
-                  <p className="text-blue-400">Alianza Comercial S.A.</p>
-                  <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>May 2023 - Dec 2023</p>
-                </div>
-              </div>
-              <p className={`${darkMode ? 'text-gray-300' : 'text-gray-600'} mb-3`}>
-                Managed inventory control, order preparation, and warehouse organization using enterprise management systems.
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {['Inventory Management', 'Order Processing', 'Team Coordination', 'Quality Control'].map((skill) => (
-                  <span key={skill} className={`px-3 py-1 rounded-full text-sm ${darkMode ? 'bg-gray-800 text-gray-300' : 'bg-gray-200 text-gray-700'}`}>
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            <div className={`p-6 rounded-xl ${darkMode ? 'bg-gray-900' : 'bg-white'} shadow-lg`}>
-              <div className="flex justify-between items-start mb-4">
-                <div>
-                  <h3 className="text-xl font-bold">Administrative Secretary</h3>
-                  <p className="text-blue-400">JF Tecnográfica</p>
-                  <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Aug 2022 - May 2023</p>
-                </div>
-              </div>
-              <p className={`${darkMode ? 'text-gray-300' : 'text-gray-600'} mb-3`}>
-                Handled customer service, graphic design tasks, and production coordination. Gained experience with design software and business operations.
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {['CorelDRAW', 'Customer Service', 'Production Management', 'Email Management'].map((skill) => (
-                  <span key={skill} className={`px-3 py-1 rounded-full text-sm ${darkMode ? 'bg-gray-800 text-gray-300' : 'bg-gray-200 text-gray-700'}`}>
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Projects Section */}
       <section id="projects" className="py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">Learning Projects</h2>
+            <h2 className="text-4xl font-bold mb-4">Featured Work</h2>
             <p className={`text-xl ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-              Personal projects demonstrating technical skills development
+              Leading projects that combine technical innovation with real-world impact
             </p>
           </div>
 
@@ -376,7 +297,7 @@ const Portfolio = () => {
                 <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between">
                   <div className="lg:flex-1">
                     <div className="flex items-center gap-3 mb-4">
-                      <Code className="text-blue-400" size={24} />
+                      {project.type === 'featured' ? <Code className="text-blue-400" size={24} /> : <Presentation className="text-purple-400" size={24} />}
                       <h3 className="text-2xl font-bold">{project.title}</h3>
                       <span className={`px-3 py-1 rounded-full text-sm font-medium ${
                         project.status === 'In Development' 
@@ -418,17 +339,12 @@ const Portfolio = () => {
                     </div>
                   </div>
 
-                  {project.link && (
+                  {project.type === 'featured' && (
                     <div className="lg:ml-8 mt-6 lg:mt-0">
-                      <a 
-                        href={project.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:from-blue-600 hover:to-purple-700 transition-all duration-200 flex items-center gap-2"
-                      >
-                        View Project
+                      <button className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:from-blue-600 hover:to-purple-700 transition-all duration-200 flex items-center gap-2">
+                        View Details
                         <ExternalLink size={16} />
-                      </a>
+                      </button>
                     </div>
                   )}
                 </div>
@@ -442,9 +358,9 @@ const Portfolio = () => {
       <section id="skills" className={`py-20 ${darkMode ? 'bg-gray-800/50' : 'bg-gray-100'}`}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">Technical Skills</h2>
+            <h2 className="text-4xl font-bold mb-4">Technical Expertise</h2>
             <p className={`text-xl ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-              Technologies and tools I'm learning and working with
+              Modern technologies and methodologies for building scalable solutions
             </p>
           </div>
 
@@ -480,10 +396,10 @@ const Portfolio = () => {
             <div className={`p-6 rounded-xl ${darkMode ? 'bg-gray-900' : 'bg-white'} shadow-lg`}>
               <div className="flex items-center gap-3 mb-4">
                 <Github className="text-purple-400" size={24} />
-                <h3 className="text-xl font-bold">Tools</h3>
+                <h3 className="text-xl font-bold">DevOps</h3>
               </div>
               <ul className="space-y-2">
-                {technologies.tools.map((tech, index) => (
+                {technologies.devops.map((tech, index) => (
                   <li key={index} className={`${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
                     {tech}
                   </li>
@@ -494,10 +410,10 @@ const Portfolio = () => {
             <div className={`p-6 rounded-xl ${darkMode ? 'bg-gray-900' : 'bg-white'} shadow-lg`}>
               <div className="flex items-center gap-3 mb-4">
                 <Database className="text-orange-400" size={24} />
-                <h3 className="text-xl font-bold">Data Analysis</h3>
+                <h3 className="text-xl font-bold">Database</h3>
               </div>
               <ul className="space-y-2">
-                {technologies.analysis.map((tech, index) => (
+                {technologies.database.map((tech, index) => (
                   <li key={index} className={`${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
                     {tech}
                   </li>
@@ -508,28 +424,80 @@ const Portfolio = () => {
         </div>
       </section>
 
+      {/* Career Goals Section */}
+      <section className="py-20">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold mb-4">Career Vision</h2>
+            <p className={`text-xl ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+              Building the future through innovative technology solutions
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              {
+                icon: <Target className="text-blue-400" size={32} />,
+                title: "SaaS Leadership",
+                description: "Lead the creation of robust, modern, and scalable SaaS platforms"
+              },
+              {
+                icon: <ExternalLink className="text-green-400" size={32} />,
+                title: "Production Ready",
+                description: "Launch production-ready applications that solve real business problems"
+              },
+              {
+                icon: <Code className="text-purple-400" size={32} />,
+                title: "Creative Projects",
+                description: "Build an original video game as a personal creative-technical project"
+              },
+              {
+                icon: <Brain className="text-orange-400" size={32} />,
+                title: "Technical Leadership",
+                description: "Become a trusted technical reference within high-performance teams"
+              }
+            ].map((goal, index) => (
+              <div
+                key={index}
+                className={`p-6 rounded-xl text-center transition-all duration-300 hover:transform hover:scale-105 ${
+                  darkMode ? 'bg-gray-800 hover:bg-gray-750' : 'bg-white hover:bg-gray-50'
+                } shadow-lg hover:shadow-xl`}
+              >
+                <div className="flex justify-center mb-4">
+                  {goal.icon}
+                </div>
+                <h3 className="text-lg font-bold mb-2">{goal.title}</h3>
+                <p className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                  {goal.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* About Section */}
-      <section id="about" className="py-20">
+      <section id="about" className={`py-20 ${darkMode ? 'bg-gray-800/50' : 'bg-gray-100'}`}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold mb-4">About Me</h2>
             <p className={`text-xl ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-              Combining business experience with technical education
+              The intersection of analytical thinking, product vision, and technical skill
             </p>
           </div>
 
           <div className={`rounded-2xl p-8 ${darkMode ? 'bg-gray-900' : 'bg-white'} shadow-lg`}>
             <div className="prose prose-lg max-w-none">
               <p className={`text-lg leading-relaxed mb-6 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-                I'm a Systems Analysis student with over 5 years of professional experience in technology sales, customer service, and business operations. Currently pursuing my degree while developing practical web development skills through personal projects.
+                As an advanced student in Systems Analysis, I'm passionate about bridging the gap between complex technical challenges and elegant, user-focused solutions. Currently, I'm leading the development of my first real SaaS system, where I apply modern technologies like React, NestJS, and PostgreSQL to create scalable, impactful applications.
               </p>
               
               <p className={`text-lg leading-relaxed mb-6 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-                My background includes hands-on experience with business systems, technical support, and customer-facing roles. I'm now certified in Data Analytics through Cisco NetAcad and actively learning modern web development technologies including React, Node.js, and PostgreSQL.
+                My experience extends beyond coding to high-level academic presentations on cutting-edge topics including Reinforcement Learning in logistics, Artificial Intelligence, and data analysis. I excel at breaking down complex concepts into clear, structured, and impactful communications that drive understanding and action.
               </p>
 
               <p className={`text-lg leading-relaxed ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-                I'm seeking opportunities to apply my business experience and growing technical skills in a professional development environment. My goal is to combine my understanding of business operations with technical expertise to create practical solutions.
+                My mindset centers on combining analytical thinking with product vision and technical expertise to craft smart, intuitive, and high-impact solutions. Whether I'm architecting database structures, designing user interfaces, or presenting research findings, I approach every challenge with the goal of creating meaningful, lasting value.
               </p>
             </div>
           </div>
@@ -537,17 +505,17 @@ const Portfolio = () => {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className={`py-20 ${darkMode ? 'bg-gray-800/50' : 'bg-gray-100'}`}>
+      <section id="contact" className="py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">Let's Connect</h2>
+            <h2 className="text-4xl font-bold mb-4">Let's Build Something Amazing</h2>
             <p className={`text-xl ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-              Open to opportunities in development, support, or data analysis roles
+              Ready to collaborate on innovative projects or discuss opportunities
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
-            <div className={`p-8 rounded-xl ${darkMode ? 'bg-gray-900' : 'bg-white'} shadow-lg`}>
+            <div className={`p-8 rounded-xl ${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
               <h3 className="text-2xl font-bold mb-6">Get In Touch</h3>
               <div className="space-y-4">
                 <a href="mailto:reyesnestor673@gmail.com" className="flex items-center gap-3 text-lg hover:text-blue-400 transition-colors">
@@ -555,7 +523,7 @@ const Portfolio = () => {
                   reyesnestor673@gmail.com
                 </a>
                 <a
-                  href="https://github.com/Tomate-ai"
+                  href="https://github.com/TomcoDev"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 text-lg hover:text-blue-400 transition-colors"
@@ -575,19 +543,19 @@ const Portfolio = () => {
               </div>
             </div>
 
-            <div className={`p-8 rounded-xl ${darkMode ? 'bg-gray-900' : 'bg-white'} shadow-lg`}>
+            <div className={`p-8 rounded-xl ${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
               <h3 className="text-2xl font-bold mb-6">Send a Message</h3>
-              <form onSubmit={handleSubmit} className="space-y-4">
+              <form onSubmit={handleSubmit}>
                 <input
                   type="text"
                   name="name"
                   placeholder="Your Name"
                   required
                   className={`w-full p-3 rounded-lg border ${
-                    darkMode 
-                      ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400' 
-                      : 'bg-white border-gray-300 text-black placeholder-gray-500'
-                  } focus:outline-none focus:ring-2 focus:ring-blue-500`}
+    darkMode 
+      ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400' 
+      : 'bg-white border-gray-300 text-black placeholder-gray-500'
+  } focus:outline-none focus:ring-2 focus:ring-blue-500`}
                 />
                 <input
                   type="email"
@@ -595,10 +563,10 @@ const Portfolio = () => {
                   placeholder="Your Email"
                   required
                   className={`w-full p-3 rounded-lg border ${
-                    darkMode 
-                      ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400' 
-                      : 'bg-white border-gray-300 text-black placeholder-gray-500'
-                  } focus:outline-none focus:ring-2 focus:ring-blue-500`}
+    darkMode 
+      ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400' 
+      : 'bg-white border-gray-300 text-black placeholder-gray-500'
+  } focus:outline-none focus:ring-2 focus:ring-blue-500`}
                 />
                 <textarea
                   rows={4}
@@ -613,7 +581,7 @@ const Portfolio = () => {
                 ></textarea>
                 <button
                   type="submit"
-                  className="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white py-3 rounded-lg font-semibold hover:from-blue-600 hover:to-purple-700 transition-all duration-200"
+                  className="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white py-3 rounded-lg font-semibold"
                 >
                   Send Message
                 </button>
@@ -628,7 +596,7 @@ const Portfolio = () => {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <p className={`${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-              © 2025 Néstor Martínez. Built with React and passion for learning.
+              © 2025 TomcoDev. Built with React and passion for clean code.
             </p>
           </div>
         </div>
