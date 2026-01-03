@@ -237,7 +237,7 @@ const Portfolio = () => {
 
             <div className="flex justify-center space-x-6">
               <a
-                href="https://github.com/Tomate-ai"
+                href="https://github.com/TomcoDev"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`p-3 rounded-full transition-colors ${darkMode ? 'bg-gray-800 hover:bg-gray-700' : 'bg-white hover:bg-gray-100'} shadow-lg`}
@@ -262,7 +262,7 @@ const Portfolio = () => {
                 <Mail size={24} />
               </a>
               <a
-                href="/public/nestor_martinez_cv_en.pdf"
+                href="/nestor_martinez_cv_en.pdf"
                 download
                 className={`p-3 rounded-full transition-colors ${darkMode ? 'bg-gray-800 hover:bg-gray-700' : 'bg-white hover:bg-gray-100'} shadow-lg`}
                 aria-label="Download CV"
@@ -289,6 +289,27 @@ const Portfolio = () => {
           </div>
 
           <div className="space-y-8">
+            <div className={`p-6 rounded-xl ${darkMode ? 'bg-gray-900' : 'bg-white'} shadow-lg`}>
+              <div className="flex justify-between items-start mb-4">
+                <div>
+                  <h3 className="text-xl font-bold">Paralegal</h3>
+                  <p className="text-blue-400">Cooperativa de Educadores de la Capital Ltda.</p>
+                  <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Aug 2025 - Present</p>
+                </div>
+              </div>
+              <p className={`${darkMode ? 'text-gray-300' : 'text-gray-600'} mb-3`}>
+              Specialized in legal operations and process optimization. Proficient in managing judicial case tracking, implementing automated workflows to eliminate errors,
+              and developing quality control systems to ensure document compliance. Experienced in streamlining inter-departmental processes, particularly in asset recovery between the Legal and Treasury departments.  
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {['Judicial Case Management', 'Process Automation', 'Quality Control', 'Asset Recovery'].map((skill) => (
+                  <span key={skill} className={`px-3 py-1 rounded-full text-sm ${darkMode ? 'bg-gray-800 text-gray-300' : 'bg-gray-200 text-gray-700'}`}>
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </div>
+                
             <div className={`p-6 rounded-xl ${darkMode ? 'bg-gray-900' : 'bg-white'} shadow-lg`}>
               <div className="flex justify-between items-start mb-4">
                 <div>
@@ -347,6 +368,10 @@ const Portfolio = () => {
                     {skill}
                   </span>
                 ))}
+              </div>
+
+              <div className={`p-6 rounded-xl ${darkMode ? 'bg-gray-900' : 'bg-white'} shadow-lg`}>
+
               </div>
             </div>
           </div>
@@ -555,7 +580,7 @@ const Portfolio = () => {
                   reyesnestor673@gmail.com
                 </a>
                 <a
-                  href="https://github.com/Tomate-ai"
+                  href="https://github.com/TomcoDev"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 text-lg hover:text-blue-400 transition-colors"

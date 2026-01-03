@@ -376,7 +376,7 @@ const Portfolio = () => {
                 <div>
                   <h3 className="text-xl font-bold">Customer Service and Technical Coordination Manager</h3>
                   <p className="text-blue-400">Electriclimas</p>
-                  <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>May 2020 - Nov 2020</p>
+                  <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Aug 2022 - May 2023</p>
                 </div>
               </div>
               <p className={`${darkMode ? 'text-gray-300' : 'text-gray-600'} mb-3`}>

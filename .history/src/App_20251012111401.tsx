@@ -356,39 +356,25 @@ const Portfolio = () => {
                 <div>
                   <h3 className="text-xl font-bold">Administrative Secretary</h3>
                   <p className="text-blue-400">JF Tecnográfica</p>
-                  <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>May 2023 - Dec 2023</p>
+                  <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Aug 2022 - May 2023</p>
                 </div>
               </div>
               <p className={`${darkMode ? 'text-gray-300' : 'text-gray-600'} mb-3`}>
                 Handled customer service, graphic design tasks, and production coordination. Gained experience with design software and business operations.
               </p>
               <div className="flex flex-wrap gap-2">
-                {['Graphic Design', 'Customer Service', 'Production Coordination', 'Email Management'].map((skill) => (
+                {['CorelDRAW', 'Customer Service', 'Production Management', 'Email Management'].map((skill) => (
                   <span key={skill} className={`px-3 py-1 rounded-full text-sm ${darkMode ? 'bg-gray-800 text-gray-300' : 'bg-gray-200 text-gray-700'}`}>
                     {skill}
                   </span>
                 ))}
               </div>
-            </div>
 
-            <div className={`p-6 rounded-xl ${darkMode ? 'bg-gray-900' : 'bg-white'} shadow-lg`}>
+              <div className={`p-6 rounded-xl ${darkMode ? 'bg-gray-900' : 'bg-white'} shadow-lg`}>
               <div className="flex justify-between items-start mb-4">
                 <div>
-                  <h3 className="text-xl font-bold">Customer Service and Technical Coordination Manager</h3>
-                  <p className="text-blue-400">Electriclimas</p>
-                  <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>May 2020 - Nov 2020</p>
-                </div>
+                  <h3 className="text-xl font-bold">Customer Service Advisor</h3>
               </div>
-              <p className={`${darkMode ? 'text-gray-300' : 'text-gray-600'} mb-3`}>
-              Specialized in customer service and technical coordination for electronic and automotive equipment. Proficient in managing equipment repairs, performing basic diagnostics,
-              and ensuring efficient communication between specialized technicians and clients. Gained valuable experience in conflict resolution and claims management with a focus on customer satisfaction.  
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {['Customer Relationship Management', 'Technical Diagnostics', 'Service Coordination', 'Conflict Resolution'].map((skill) => (
-                  <span key={skill} className={`px-3 py-1 rounded-full text-sm ${darkMode ? 'bg-gray-800 text-gray-300' : 'bg-gray-200 text-gray-700'}`}>
-                    {skill}
-                  </span>
-                ))}
               </div>
             </div>
           </div>

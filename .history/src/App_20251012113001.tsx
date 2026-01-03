@@ -262,7 +262,7 @@ const Portfolio = () => {
                 <Mail size={24} />
               </a>
               <a
-                href="/public/nestor_martinez_cv_en.pdf"
+                href="/nestor_martinez_cv_en.pdf"
                 download
                 className={`p-3 rounded-full transition-colors ${darkMode ? 'bg-gray-800 hover:bg-gray-700' : 'bg-white hover:bg-gray-100'} shadow-lg`}
                 aria-label="Download CV"
@@ -289,6 +289,27 @@ const Portfolio = () => {
           </div>
 
           <div className="space-y-8">
+            <div className={`p-6 rounded-xl ${darkMode ? 'bg-gray-900' : 'bg-white'} shadow-lg`}>
+              <div className="flex justify-between items-start mb-4">
+                <div>
+                  <h3 className="text-xl font-bold">Paralegal</h3>
+                  <p className="text-blue-400">Cooperativa de Educadores de la Capital Ltda.</p>
+                  <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Aug 2025 - Present</p>
+                </div>
+              </div>
+              <p className={`${darkMode ? 'text-gray-300' : 'text-gray-600'} mb-3`}>
+              Specialized in legal operations and process optimization. Proficient in managing judicial case tracking, implementing automated workflows to eliminate errors,
+              and developing quality control systems to ensure document compliance. Experienced in streamlining inter-departmental processes, particularly in asset recovery between the Legal and Treasury departments.  
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {['Judicial Case Management', 'Process Automation', 'Quality Control', 'Asset Recovery'].map((skill) => (
+                  <span key={skill} className={`px-3 py-1 rounded-full text-sm ${darkMode ? 'bg-gray-800 text-gray-300' : 'bg-gray-200 text-gray-700'}`}>
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </div>
+                
             <div className={`p-6 rounded-xl ${darkMode ? 'bg-gray-900' : 'bg-white'} shadow-lg`}>
               <div className="flex justify-between items-start mb-4">
                 <div>
@@ -335,14 +356,35 @@ const Portfolio = () => {
                 <div>
                   <h3 className="text-xl font-bold">Administrative Secretary</h3>
                   <p className="text-blue-400">JF Tecnográfica</p>
-                  <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Aug 2022 - May 2023</p>
+                  <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>May 2023 - Dec 2023</p>
                 </div>
               </div>
               <p className={`${darkMode ? 'text-gray-300' : 'text-gray-600'} mb-3`}>
                 Handled customer service, graphic design tasks, and production coordination. Gained experience with design software and business operations.
               </p>
               <div className="flex flex-wrap gap-2">
-                {['CorelDRAW', 'Customer Service', 'Production Management', 'Email Management'].map((skill) => (
+                {['Graphic Design', 'Customer Service', 'Production Coordination', 'Email Management'].map((skill) => (
+                  <span key={skill} className={`px-3 py-1 rounded-full text-sm ${darkMode ? 'bg-gray-800 text-gray-300' : 'bg-gray-200 text-gray-700'}`}>
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div className={`p-6 rounded-xl ${darkMode ? 'bg-gray-900' : 'bg-white'} shadow-lg`}>
+              <div className="flex justify-between items-start mb-4">
+                <div>
+                  <h3 className="text-xl font-bold">Customer Service and Technical Coordination Manager</h3>
+                  <p className="text-blue-400">Electriclimas</p>
+                  <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>May 2020 - Nov 2023</p>
+                </div>
+              </div>
+              <p className={`${darkMode ? 'text-gray-300' : 'text-gray-600'} mb-3`}>
+              Specialized in customer service and technical coordination for electronic and automotive equipment. Proficient in managing equipment repairs, performing basic diagnostics,
+              and ensuring efficient communication between specialized technicians and clients. Gained valuable experience in conflict resolution and claims management with a focus on customer satisfaction.  
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {['Customer Relationship Management', 'Technical Diagnostics', 'Service Coordination', 'Conflict Resolution'].map((skill) => (
                   <span key={skill} className={`px-3 py-1 rounded-full text-sm ${darkMode ? 'bg-gray-800 text-gray-300' : 'bg-gray-200 text-gray-700'}`}>
                     {skill}
                   </span>
